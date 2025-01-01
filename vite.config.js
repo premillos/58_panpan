@@ -6,12 +6,18 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vite.dev/config/
-export default defineConfig({
-  base: mode === 'development' ? '/' : '/58_panpan/',
-  plugins: [vue(), vueDevTools(), AutoImport({
-    resolvers: [ElementPlusResolver()],
-  }),
-  Components({
-    resolvers: [ElementPlusResolver()],
-  }),],
+export default defineConfig(({ mode }) => {
+  return {
+    base: mode === 'development' ? '/' : '/58_panpan/',
+    plugins: [
+      vue(),
+      vueDevTools(),
+      AutoImport({
+        resolvers: [ElementPlusResolver()],
+      }),
+      Components({
+        resolvers: [ElementPlusResolver()],
+      }),
+    ],
+  }
 })
