@@ -28,11 +28,7 @@ jobs:
       run: ls -la ./dist
 
     - name: Deploy to GitHub Pages
-      env:
-        GITHUB_TOKEN: ${{ secrets.DEPLOY_SECRET }}
-      run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git add .
-        git commit -m "Deploy to GitHub Pages"
-        git push --force-with-lease "https://${GITHUB_TOKEN}@github.com/premillos/58_panpan.git" main:gh-pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.DEPLOY_SECRET }}
+        publish_dir: ./dist
